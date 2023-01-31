@@ -18,7 +18,7 @@ class AtividadesController extends Controller
     public function index($id)
     {
         $disciplinasID = Disciplines::find($id);
-        $idProfessor = Auth::user()->id;    
+        $idProfessor = Auth::user()->id;
         $atividades = Activities::where('teacher_id', $idProfessor)->where('discipline_id', $id)->get();
         return view('atividades.index', compact('atividades', 'disciplinasID'));
     }
@@ -42,11 +42,13 @@ class AtividadesController extends Controller
      */
     public function store(Request $request, $id)
     {
-        $idProfessor = Auth::user()->id;    
+        $request->filepath =  $request->filepath->store('produtos', 'public');
+        $idProfessor = Auth::user()->id;
         Activities::create([
             'teacher_id' => $idProfessor,
             'discipline_id' => $id,
             'name' => $request->name,
+            'filepath' => $request->filepath,
             'description' => $request->description,
         ]);
         return redirect()->route('atividades.index', compact('id'));

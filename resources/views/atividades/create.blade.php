@@ -39,7 +39,7 @@
         <div class="row coluna-login">
             <div class="col-md-4 offset-md-4 align-self-center "
                 style="background-color: white; height:400px; border-radius: 10px; box-shadow:0 0px 3px #67736b;">
-                <form action="{{route('atividades.store', $disciplinasID)}}" method="POST" class="form-login">
+                <form action="{{route('atividades.store', $disciplinasID)}}" method="POST" class="form-login" enctype="multipart/form-data">
                     @csrf
                     <h4>Criar Atividade</h4>
                     <div class="row">
@@ -48,11 +48,11 @@
                                 <input type="text" class="form-control" id="exampleFormControlInput1" name="name"
                                     placeholder="Nome da Atividade">
                             </div>
-                            
+
                                 <div class="col-12">
                                     <div class="mb-3">
                                         <input type="file" class="form-control" id="exampleFormControlInput1"
-                                            name="file" placeholder="Email">
+                                            name="filepath" placeholder="Email">
                                     </div>
                                 </div>
                                 <div class="col-12">
