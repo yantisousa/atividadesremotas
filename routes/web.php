@@ -29,6 +29,9 @@ Route::middleware('autenticador')->group(function(){
     Route::get('/atividades/create/{id}', [AtividadesController::class, 'create'])->name('atividades.create');
     Route::post('/atividades/store/{id}', [AtividadesController::class, 'store'])->name('atividades.store');
     Route::get('/atividades/index/{id}', [AtividadesController::class, 'index'])->name('atividades.index');
+    Route::get('/atividades/edit/{id}', [AtividadesController::class, 'edit'])->name('atividades.edit');
+    Route::put('/atividades/update', [AtividadesController::class, 'update'])->name('atividades.update');
+
 });
 Route::get('/login', [LoginController::class, 'create'])->name('login');
 Route::post('/login/store', [LoginController::class, 'store'])->name('login.store');

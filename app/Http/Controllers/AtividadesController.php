@@ -42,7 +42,7 @@ class AtividadesController extends Controller
      */
     public function store(Request $request, $id)
     {
-        $request->filepath =  $request->filepath->store('produtos', 'public');
+        $request->filepath = $request->filepath->store('produtos', 'public');
         $idProfessor = Auth::user()->id;
         Activities::create([
             'teacher_id' => $idProfessor,
@@ -73,7 +73,9 @@ class AtividadesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $atividadeID = Activities::find($id);
+        return $atividadeID;
+
     }
 
     /**
@@ -83,9 +85,18 @@ class AtividadesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        dd($file = $request->file('file'));
+        $dados = Activities::find($request->id);
+        $testando = explode("/", $request->filepath);
+        dd($testando);
+        $teste = $request->filepath->store('produtos', 'public');
+        $dados->update([
+            'name' => $request->name,
+            'filepath' => $teste,
+            'description' => $request->description,
+        ]);
     }
 
     /**
